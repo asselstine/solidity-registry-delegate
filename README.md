@@ -1,0 +1,1 @@
+This Solidity library provides a Delegate and a Registry to manage contract upgrades.  All contracts are registered, and then instances of the Delegate contract point to the contracts listed in the registry.
