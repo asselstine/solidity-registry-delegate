@@ -3,7 +3,16 @@ pragma solidity ^0.4.23;
 import "./IRegistry.sol";
 
 contract Delegate {
+  /**
+   * This function should return something like keccak256("org.myorg.delegate.registry") in
+   * order to provide a unique storage position for the data.
+   */
   function registryPosition() internal view returns (bytes32);
+
+  /**
+   * This function should return something like keccak256("org.myorg.delegate.key") in
+   * order to provide a unique storage position for the data.
+   */
   function keyPosition() internal view returns (bytes32);
 
   function getRegistry() public view returns (address impl) {
