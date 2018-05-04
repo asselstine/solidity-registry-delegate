@@ -1,18 +1,18 @@
 pragma solidity ^0.4.23;
 
 contract Owned {
+  /**
+   * This should be something like keccak256("org.myorg.owned.owner") in
+   * order to provide a unique storage position for the data.
+   */
+  public bytes32 ownerPosition;
+
   event TransferredOwnership(address previousOwner, address newOwner);
 
   modifier onlyOwner() {
     require(msg.sender == getOwner());
     _;
   }
-  
-  /**
-   * This function should return something like keccak256("org.myorg.owned.owner") in
-   * order to provide a unique storage position for the data.
-   */
-  function ownerPosition() internal returns (bytes32);
 
   function transferOwnership(address _newOwner) onlyOwner external {
     address owner = getOwner();

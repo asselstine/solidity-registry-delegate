@@ -4,40 +4,40 @@ import "./IRegistry.sol";
 
 contract Delegate {
   /**
-   * This function should return something like keccak256("org.myorg.delegate.registry") in
+   * This should be set to something like keccak256("org.myorg.delegate.registry") in
    * order to provide a unique storage position for the data.
    */
-  function registryPosition() internal view returns (bytes32);
+  public bytes32 registryPosition;
 
   /**
-   * This function should return something like keccak256("org.myorg.delegate.key") in
+   * This should be set to something like keccak256("org.myorg.delegate.key") in
    * order to provide a unique storage position for the data.
    */
-  function keyPosition() internal view returns (bytes32);
+  public bytes32 keyPosition;
 
   function getRegistry() public view returns (address impl) {
-    bytes32 position = registryPosition();
+    bytes32 position = registryPosition;
     assembly {
       impl := sload(position)
     }
   }
 
   function getKey() public view returns (bytes32 key) {
-    bytes32 position = keyPosition();
+    bytes32 position = keyPosition;
     assembly {
       key := sload(position)
     }
   }
 
   function _setRegistry(address registry) internal {
-    bytes32 position = registryPosition();
+    bytes32 position = registryPosition;
     assembly {
       sstore(position, registry)
     }
   }
 
   function _setKey(bytes32 key) internal {
-    bytes32 position = keyPosition();
+    bytes32 position = keyPosition;
     assembly {
       sstore(position, key)
     }
